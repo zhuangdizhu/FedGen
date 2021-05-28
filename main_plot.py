@@ -14,7 +14,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str, default="Mnist")
     parser.add_argument("--algorithms", type=str, default="FedAvg,Fedgen", help='algorithm names separate by comma')
-    parser.add_argument("--result_path", type=str, default="./results", help="directory path to save results")
+    parser.add_argument("--result_path", type=str, default="results", help="directory path to save results")
     parser.add_argument("--model", type=str, default="cnn")
     parser.add_argument("--learning_rate", type=float, default=0.01, help='learning rate.')
     parser.add_argument("--local_epochs", type=int, default=20)

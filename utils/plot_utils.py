@@ -45,11 +45,18 @@ def plot_results(args, algorithms):
     sub_dir = dataset_[0] + "/" + dataset_[2] # e.g. Mnist/ratio0.5
     os.system("mkdir -p figs/{}".format(sub_dir))  # e.g. figs/Mnist/ratio0.5
     plt.figure(1, figsize=(5, 5))
+    TOP_N = 5
+    max_acc = 0
     for i, algorithm in enumerate(algorithms):
         algo_name = get_label_name(algorithm)
         ######### plot test accuracy ############
         metrics = [load_results(args, algorithm, seed) for seed in range(n_seeds)]
         all_curves = np.concatenate([metrics[seed]['glob_acc'] for seed in range(n_seeds)])
+        top_accs =  np.concatenate([np.sort(metrics[seed]['glob_acc'])[-TOP_N:] for seed in range(n_seeds)] )
+        acc_avg = np.mean(top_accs)
+        acc_std = np.std(top_accs)
+        info = 'Algorithm: {:<10s}, Accuracy = {:.2f} %, deviation = {:.2f}'.format(algo_name, acc_avg * 100, acc_std * 100)
+        print(info)
         length = len(all_curves) // n_seeds
         sns.lineplot(
             x=np.array(list(range(length)) * n_seeds) + 1,
@@ -64,7 +71,8 @@ def plot_results(args, algorithms):
     plt.grid()
     plt.title(dataset_[0] + ' Test Accuracy')
     plt.xlabel('Epoch')
-    max_acc = np.max(all_curves) + 1e-2
+    max_acc = np.max([max_acc, np.max(all_curves) ]) + 4e-2
+
     if args.min_acc < 0:
         alpha = 0.7
         min_acc = np.max(all_curves) * alpha + np.min(all_curves) * (1-alpha)

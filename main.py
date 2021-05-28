@@ -64,7 +64,7 @@ if __name__ == "__main__":
     parser.add_argument("--K", type=int, default=1, help="Computation steps")
     parser.add_argument("--times", type=int, default=3, help="running time")
     parser.add_argument("--device", type=str, default="cpu", choices=["cpu","cuda"], help="run device (cpu | cuda)")
-    parser.add_argument("--result_path", type=str, default="./results", help="directory path to save results")
+    parser.add_argument("--result_path", type=str, default="results", help="directory path to save results")
 
     args = parser.parse_args()
 
