@@ -48,10 +48,6 @@ python main.py --dataset EMnist-alpha0.1-ratio0.1 --algorithm FedDistll-FL --bat
 ```
 ----
 
-##### CelebA Dataset
-
-----
-
 ### Plot
 For the input attribute **algorithms**, list the name of algorithms and separate them by comma, e.g. `--algorithms FedAvg,FedGen,FedProx`
 ```
