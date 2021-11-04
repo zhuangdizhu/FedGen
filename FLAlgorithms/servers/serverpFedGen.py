@@ -129,7 +129,7 @@ class FedGen(Server):
             for i in range(n_iters):
                 self.generative_optimizer.zero_grad()
                 y=np.random.choice(self.qualified_labels, batch_size)
-                y_input=torch.tensor(y)
+                y_input=torch.LongTensor(y)
                 ## feed to generator
                 gen_result=self.generative_model(y_input, latent_layer_idx=latent_layer_idx, verbose=True)
                 # get approximation of Z( latent) if latent set to True, X( raw image) otherwise
