@@ -225,7 +225,7 @@ class Server:
         # override evaluate function to log vae-loss.
         test_ids, test_samples, test_accs, test_losses = self.test(selected=selected)
         glob_acc = np.sum(test_accs)*1.0/np.sum(test_samples)
-        glob_loss = np.sum([x * y for (x, y) in zip(test_samples, test_losses)]).item() / np.sum(test_samples)
+        glob_loss = np.sum([x * y.detach() for (x, y) in zip(test_samples, test_losses)]).item() / np.sum(test_samples)
         if save:
             self.metrics['glob_acc'].append(glob_acc)
             self.metrics['glob_loss'].append(glob_loss)
