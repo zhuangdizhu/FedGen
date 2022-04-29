@@ -5,7 +5,7 @@ CONFIGS_ = {
     'cifar100-c30': ([32, 'M', 64, 'M', 128, 'F'], 3, 30, 2048, 128),
     'cifar100-c50': ([32, 'M', 64, 'M', 128, 'F'], 3, 50, 2048, 128),
 
-    'emnist': ([6, 16, 'F'], 1, 25, 784, 32),
+    'emnist': ([6, 16, 'F'], 1, 26, 784, 32),
     'mnist': ([6, 16, 'F'], 1, 10, 784, 32),
     'mnist_cnn1': ([6, 'M', 16, 'M', 'F'], 1, 10, 64, 32),
     'mnist_cnn2': ([16, 'M', 32, 'M', 'F'], 1, 10, 128, 32),
@@ -22,11 +22,11 @@ GENERATORCONFIGS = {
     'mnist-cnn1': (128, 32, 1, 10, 32),
     'mnist-cnn2': (64, 32, 1, 10, 32),
     'mnist-cnn3': (64, 32, 1, 10, 16),
-    'emnist': (256, 32, 1, 25, 32),
-    'emnist-cnn0': (256, 32, 1, 25, 64),
-    'emnist-cnn1': (128, 32, 1, 25, 32),
-    'emnist-cnn2': (128, 32, 1, 25, 16),
-    'emnist-cnn3': (64, 32, 1, 25, 32),
+    'emnist': (256, 32, 1, 26, 32),
+    'emnist-cnn0': (256, 32, 1, 26, 64),
+    'emnist-cnn1': (128, 32, 1, 26, 32),
+    'emnist-cnn2': (128, 32, 1, 26, 16),
+    'emnist-cnn3': (64, 32, 1, 26, 32),
 }
 
 
@@ -40,7 +40,7 @@ RUNCONFIGS = {
             'num_pretrain_iters': 20,
             'ensemble_alpha': 1,  # teacher loss (server side)
             'ensemble_beta': 0, # adversarial student loss
-            'unique_labels': 25,
+            'unique_labels': 26,
             'generative_alpha':10,
             'generative_beta': 1,
             'weight_decay': 1e-2

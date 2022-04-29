@@ -69,8 +69,7 @@ class Generator(nn.Module):
             y_input = torch.FloatTensor(batch_size, self.n_class)
             y_input.zero_()
             #labels = labels.view
-            labels_int64 = labels.type(torch.LongTensor)
-            y_input.scatter_(1, labels_int64.view(-1,1), 1)
+            y_input.scatter_(1, labels.view(-1,1), 1)
         z = torch.cat((eps, y_input), dim=1)
         ### FC layers
         for layer in self.fc_layers:
@@ -173,11 +172,11 @@ class DivLoss(nn.Module):
         diversity_loss=1 / (lz + eps)
         return diversity_loss
 
+
 class DiversityLoss(nn.Module):
     """
     Diversity loss for improving the performance.
     """
-
     def __init__(self, metric):
         """
         Class initializer.

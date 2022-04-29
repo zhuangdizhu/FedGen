@@ -11,7 +11,6 @@ from utils.model_utils import get_log_path, METRICS
 
 class Server:
     def __init__(self, args, model, seed):
-
         # Set up the main attributes
         self.dataset = args.dataset
         self.num_glob_iters = args.num_glob_iters
@@ -88,7 +87,6 @@ class Server:
                 server_param.data = server_param.data + user_param.data.clone() * ratio
 
 
-
     def aggregate_parameters(self,partial=False):
         assert (self.selected_users is not None and len(self.selected_users) > 0)
         if partial:
@@ -115,6 +113,7 @@ class Server:
         model_path = os.path.join("models", self.dataset, "server" + ".pt")
         assert (os.path.exists(model_path))
         self.model = torch.load(model_path)
+
 
     def model_exists(self):
         return os.path.exists(os.path.join("models", self.dataset, "server" + ".pt"))
@@ -225,7 +224,7 @@ class Server:
         # override evaluate function to log vae-loss.
         test_ids, test_samples, test_accs, test_losses = self.test(selected=selected)
         glob_acc = np.sum(test_accs)*1.0/np.sum(test_samples)
-        glob_loss = np.sum([x * y.detach() for (x, y) in zip(test_samples, test_losses)]).item() / np.sum(test_samples)
+        glob_loss = np.sum([x * y for (x, y) in zip(test_samples, test_losses)]).item() / np.sum(test_samples)
         if save:
             self.metrics['glob_acc'].append(glob_acc)
             self.metrics['glob_loss'].append(glob_loss)
