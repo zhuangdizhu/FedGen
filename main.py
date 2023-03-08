@@ -45,7 +45,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", type=str, default="Mnist")
+    parser.add_argument("--dataset", type=str, default="Mnist-alpha0.1-ratio0.5")
     parser.add_argument("--model", type=str, default="cnn")
     parser.add_argument("--train", type=int, default=1, choices=[0,1])
     parser.add_argument("--algorithm", type=str, default="pFedMe")
